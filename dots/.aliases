@@ -13,7 +13,7 @@ alias subl="open -a sublime\ text"
 alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/homebrew/Brewfile'
 
 # Synchronizes dotfiles
-alias sync_dotfiles='python ~/.dotfiles/update.py'
+alias sync_dotfiles='python ~/.dotfiles/sync.py'
 
 # Get macOS software updates, and update Homebrew and its installed packages
 alias update_system='sudo softwareupdate -i -a && brew update && brew upgrade && brew cu'
