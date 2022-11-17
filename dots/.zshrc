@@ -90,6 +90,7 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.iterm2_shell_integration.zsh
+source ~/.aliases
 
 
 
