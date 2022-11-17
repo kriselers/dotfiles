@@ -64,7 +64,7 @@ cask "sublime-text"
 # Open-source code editor
 cask "visual-studio-code"
 
-
+# Installing apps from the Mac AppStore using mas
 mas "1Password for Safari", id: 1569813296
 mas "GoodNotes", id: 1444383602
 mas "Xcode", id: 497799835
