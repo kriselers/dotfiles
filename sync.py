@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 """
-Dotfiles syncronization.
+Dotfiles syncronization. Useful for updating existing dotfiles if everything
+else is already installed on the system.
 Makes symlinks for all files: ~/.dotfiles/.zshrc => ~/.zshrc
 """
 
@@ -27,7 +28,7 @@ def is_link_to(link, dest):
 
 
 def main():
-    print(f"Starting syncronization at {SOURCE_DIR}...")
+    print(f"Starting syncronization at {SOURCE_DIR}...\n")
     os.chdir(os.path.expanduser(SOURCE_DIR))
     for filename in [file for file in glob.glob(".*") if file not in IGNORE]:
         dotfile = os.path.join(os.path.expanduser("~"), filename)
@@ -36,6 +37,7 @@ def main():
         # Check that we aren't overwriting anything
         if os.path.lexists(dotfile):
             if is_link_to(dotfile, source):
+                print(f"Symlink to {source} already exists in {dotfile}")
                 continue
 
             response = input(f"Overwrite file '{dotfile}'? [y/N] ")
@@ -47,7 +49,7 @@ def main():
 
         os.symlink(source, dotfile)
         print(f"{dotfile} => {source}")
-    print("Process completed!")
+    print("\nProcess completed!")
 
 
 if __name__ == "__main__":
