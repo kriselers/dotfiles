@@ -1,8 +1,9 @@
+tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "romkatv/powerlevel10k"
-tap "buo/cask-upgrade"
 # Distributed revision control system
 brew "git"
 # Mac App Store command-line interface
@@ -19,18 +20,20 @@ brew "sqlite"
 brew "tcl-tk"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Internet file retriever
+brew "wget"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # General-purpose lossless data-compression library
 brew "zlib"
+# UNIX shell (command interpreter)
+brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
-
-
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Application launcher and productivity software
@@ -43,6 +46,9 @@ cask "discord"
 cask "dozer"
 # Web browser
 cask "firefox"
+# Typeface made for developers
+cask "font-jetbrains-mono"
+cask "font-source-code-pro"
 # Screenshot and screen recording tool
 cask "gyazo"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -63,8 +69,6 @@ cask "spotify"
 cask "sublime-text"
 # Open-source code editor
 cask "visual-studio-code"
-
-# Installing apps from the Mac AppStore using mas
 mas "1Password for Safari", id: 1569813296
 mas "GoodNotes", id: 1444383602
 mas "Xcode", id: 497799835

@@ -18,7 +18,7 @@ fi
 homedir=$1
 
 # dotfiles directory
-dotfilesdir=${homedir}/.dotfiles
+dotfilesdir=${homedir}/.dotfiles/dots
 
 # list of files/folders to symlink in ${homedir}
 files="zprofile zshrc aliases p10k.zsh"
@@ -35,12 +35,22 @@ done
 
 # Run the Homebrew script
 echo "\nRunning Homebrew script..."
-./homebrew/brew.sh
+./brew.sh
 echo "Done!\n"
 
-echo "Moving iTerm2 settings .plist to ~/Library/Preferences/"
 # Configure iTerm2 settings
-cp settings/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
+echo "Moving iTerm2 settings .plist to ~/Library/Preferences/"
+curl -L https://iterm2.com/shell_integration/zsh \
+-o ~/.iterm2_shell_integration.zsh
+cp -r iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
+echo "Done!\n"
+
+echo "Running Sublime Text script..."
+./sublime.sh
 echo "Done!\n"
 
 echo "Mac setup complete! 🤙🏼"
+echo "Don't forget to install Python versions using pyenv.\n"
+echo "i.e.:"
+echo "\tpyenv install 3.10"
+echo "\tpyenv global 3.10.x"

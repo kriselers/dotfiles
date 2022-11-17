@@ -30,7 +30,7 @@ The Xcode Command Line Tools include `git` and `make` (not available on stock Ma
 git clone https://github.com/kriselers/dotfiles.git ~/.dotfiles
 ```
 
-5. `cd` to the `~/.dotfiles` directory and run:
+5. `cd` to the `~/.dotfiles` directory and run `install.sh` supplying your home directory:
 
 ```bash
 cd .dotfiles

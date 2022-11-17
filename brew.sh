@@ -9,11 +9,8 @@ brew update
 # Upgrading any already-installed formulae
 brew upgrade
 
-# Save Homebrew's installed location
-BREW_PREFIX=$(brew --prefix)
-
 # Installs Brew Bundle to access Brewfile
 brew bundle
 
 # Install everything from /homebrew/Brewfile
-
+brew bundle --file=~/.dotfiles/homebrew/Brewfile

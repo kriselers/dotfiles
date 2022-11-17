@@ -1,0 +1,23 @@
+# Enable aliases to be sudo'ed
+alias sudo='sudo '
+
+# Edit some config files in VSCode
+alias zshrcconf='code ~/.dotfiles/.zshrc'
+alias zprofconf='code ~/.dotfiles/.zprofile'
+alias p10kconf='code ~/.dotfiles/.p10k.zsh'
+
+# Open files in Sublime Text
+alias subl="open -a sublime\ text"
+
+# Updates the Brewfile
+alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/homebrew/Brewfile'
+
+# Synchronizes dotfiles
+alias sync_dotfiles='python ~/.dotfiles/update.py'
+
+# Get macOS software updates, and update Homebrew and its installed packages
+alias update_system='sudo softwareupdate -i -a && brew update && brew upgrade && brew cu'
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"

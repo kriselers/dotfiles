@@ -380,6 +380,8 @@
 	<false/>
 	<key>DimOnlyText</key>
 	<false/>
+	<key>DoubleClickPerformsSmartSelection</key>
+	<false/>
 	<key>EnableAPIServer</key>
 	<true/>
 	<key>EnableDivisionView</key>
@@ -732,6 +734,8 @@
 			<string>693FA338-A03E-4AB4-AE6B-E9B25EF168B6</string>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
+			<key>Icon</key>
+			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
