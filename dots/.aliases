@@ -6,14 +6,8 @@ alias zshrcconf='code ~/.dotfiles/.zshrc'
 alias zprofconf='code ~/.dotfiles/.zprofile'
 alias p10kconf='code ~/.dotfiles/.p10k.zsh'
 
-# Open files in Sublime Text
-alias subl="open -a sublime\ text"
-
 # Updates the Brewfile
 alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/homebrew/Brewfile'
-
-# Synchronizes dotfiles
-alias sync_dotfiles='python ~/.dotfiles/sync.py'
 
 # Get macOS software updates, and update Homebrew and its installed packages
 alias update_system='sudo softwareupdate -i -a && brew update && brew upgrade && brew cu'
