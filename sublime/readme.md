@@ -1,5 +1,7 @@
 # Sublime Text Configuration
 
+My lightweight configuration for Sublime Text.
+
 ![Sublime Text](https://i.gyazo.com/273f2749a9a10a56de0822a560decc78.png)
 
 You must first ensure that [Package Control](https://packagecontrol.io/installation) is installed.
