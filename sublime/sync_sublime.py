@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Sublime Text syncronization. Useful for updating changes made to Sublime remotely.
+Sublime Text syncronization. Useful for updating changes made to Sublime config files in this directory.
 """
 
 import glob

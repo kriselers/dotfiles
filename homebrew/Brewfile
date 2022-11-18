@@ -3,6 +3,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+tap "khanhas/tap"
 tap "romkatv/powerlevel10k"
 # Distributed revision control system
 brew "git"
@@ -32,10 +33,14 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Command-line tool to customize Spotify client
+brew "khanhas/tap/spicetify-cli"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# Command-line helper for the 1Password password manager
+cask "1password-cli"
 # Application launcher and productivity software
 cask "alfred"
 # Application uninstaller

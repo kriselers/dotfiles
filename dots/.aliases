@@ -2,8 +2,8 @@
 alias sudo='sudo '
 
 # Edit some config files in VSCode
-alias zshrcconf='code ~/.dotfiles/.zshrc'
-alias zprofconf='code ~/.dotfiles/.zprofile'
+alias zrcconf='code ~/.dotfiles/.zshrc'
+alias zpconf='code ~/.dotfiles/.zprofile'
 alias p10kconf='code ~/.dotfiles/.p10k.zsh'
 
 # Updates the Brewfile
