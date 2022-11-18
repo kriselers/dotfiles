@@ -36,20 +36,23 @@ done
 # Run the Homebrew script
 echo "\nRunning Homebrew script..."
 ./brew.sh
-echo "Done!\n"
 
-# Configure iTerm2 settings
-echo "Moving iTerm2 settings .plist to ~/Library/Preferences/"
+# Configure iTerm2
+echo "Configuring iTerm2..."
+echo "Downloading Shell Integration..."
 curl -L https://iterm2.com/shell_integration/zsh \
 -o ~/.iterm2_shell_integration.zsh
+echo "Moving iTerm2 settings .plist to ~/Library/Preferences/"
 cp -r iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
-echo "Done!\n"
+echo "Specifying the preferences directory"
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iTerm2/"
+echo "Telling iTerm2 to use the custom preferences in the directory"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
-echo "Running Sublime Text script..."
+echo "\nRunning Sublime Text script..."
 ./sublime.sh
-echo "Done!\n"
 
-echo "Mac setup complete! 🤙🏼"
+echo "\n\nMac setup complete! 🤙🏼"
 echo "Don't forget to install Python versions using pyenv.\n"
 echo "i.e.:"
 echo "\tpyenv install 3.10"
