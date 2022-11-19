@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 
 """
-Sublime Text syncronization. Useful for updating changes made to Sublime config files in this directory.
+Sublime Text syncronization.
+Makes symlinks for all necessary Sublime config files:
+    ~/.dotfiles/sublime/Preferences.sublime-settings
+    =>
+    ~/Library/Application Support/Sublime Text/Packages/User/Preferences.sublime-settings
 """
 
 import glob
@@ -19,26 +23,42 @@ IGNORE = [
     "sync_sublime.py",
 ]
 
+def force_remove(path):
+    if os.path.isdir(path) and not os.path.islink(path):
+        shutil.rmtree(path, False)
+    else:
+        os.unlink(path)
+
+
+def is_link_to(link, dest):
+    is_link = os.path.islink(link)
+    is_link = is_link and os.readlink(link).rstrip("/") == dest.rstrip("/")
+    return is_link
+
 
 def main():
     print(f"Starting syncronization at {SOURCE_DIR}...\n")
     os.chdir(os.path.expanduser(SOURCE_DIR))
     for filename in [file for file in glob.glob("*") if file not in IGNORE]:
-        source = os.path.join(os.path.expanduser(SOURCE_DIR), filename)
-        destination = os.path.join(os.path.expanduser(DESTINATION_DIR), filename)
+        source_file = os.path.join(os.path.expanduser(SOURCE_DIR), filename)
+        destination_file = os.path.join(os.path.expanduser(DESTINATION_DIR), filename)
 
         # Check that we aren't automatically overwriting anything
-        if os.path.exists(destination):
-            response = input(f"Overwrite current '{filename}'? [y/N] ")
+        if os.path.lexists(source_file):
+            if is_link_to(source_file, destination_file):
+                print(f"Symlink to {filename} already exists!")
+                continue
 
+            response = input(f"Overwrite file '{filename}'? [y/N] ")
             if not response.lower().startswith("y"):
                 continue
 
-        try:
-            shutil.copy(source, destination)
-        except IOError:
-            print(f"Error copying {filename}. Destination not writable.")
-            sys.exit()
+            print(f"Creating symlink to {filename} in Sublime Text directory.")
+            force_remove(destination_file)
+
+        os.symlink(source_file, destination_file)
+        print(f"{source_file} => {destination_file}")
+    print("\nProcess completed!")
 
 
 if __name__ == "__main__":
