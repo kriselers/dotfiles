@@ -23,6 +23,7 @@ IGNORE = [
     "sync_sublime.py",
 ]
 
+
 def force_remove(path):
     if os.path.isdir(path) and not os.path.islink(path):
         shutil.rmtree(path, False)
@@ -57,7 +58,7 @@ def main():
             force_remove(destination_file)
 
         os.symlink(source_file, destination_file)
-        print(f"{source_file} => {destination_file}")
+        print(f"{source_file} => {destination_file}\n")
     print("\nProcess completed!")
 
 
