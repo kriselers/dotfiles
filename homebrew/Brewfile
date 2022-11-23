@@ -17,14 +17,16 @@ brew "readline"
 brew "pyenv"
 # Command-line interface for SQLite
 brew "sqlite"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Tool Command Language
 brew "tcl-tk"
+# Programmatically correct mistyped console commands
+brew "thefuck"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Internet file retriever
 brew "wget"
-# General-purpose data compression with high compression ratio
-brew "xz"
 # General-purpose lossless data-compression library
 brew "zlib"
 # UNIX shell (command interpreter)
