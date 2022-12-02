@@ -10,7 +10,7 @@ import glob
 import os
 import shutil
 
-SOURCE_DIR = "~/.dotfiles/dots"
+SOURCE_DIR = os.getcwd() + "/dots"
 IGNORE = [".DS_Store"]
 
 

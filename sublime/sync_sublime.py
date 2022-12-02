@@ -14,7 +14,7 @@ import os
 import shutil
 import sys
 
-SOURCE_DIR = "~/.dotfiles/sublime"
+SOURCE_DIR = os.getcwd()
 DESTINATION_DIR = "~/Library/Application Support/Sublime Text/Packages/User"
 IGNORE = [
     ".DS_Store",
