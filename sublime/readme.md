@@ -1,6 +1,6 @@
 # Sublime Text Configuration
 
-My lightweight configuration for Sublime Text. I don't use Sublime to build any code rather as a fast way to view and edit projects.
+My lightweight configuration for Sublime Text. I don't use Sublime to build any code rather as a fast way to view and make quick edit projects.
 
 ![Sublime Text](https://i.gyazo.com/273f2749a9a10a56de0822a560decc78.png)
 
