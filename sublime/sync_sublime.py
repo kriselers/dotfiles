@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """
+!!!! THIS IS MACOS ONLY !!!!
 Sublime Text syncronization.
 Makes symlinks for all necessary Sublime config files:
     ~/.dotfiles/sublime/Preferences.sublime-settings
