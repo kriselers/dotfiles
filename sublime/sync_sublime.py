@@ -42,12 +42,12 @@ def main():
     print(f"Starting syncronization at {SOURCE_DIR}...\n")
     os.chdir(os.path.expanduser(SOURCE_DIR))
     for filename in [file for file in glob.glob("*") if file not in IGNORE]:
-        source_file = os.path.join(os.path.expanduser(SOURCE_DIR), filename)
-        destination_file = os.path.join(os.path.expanduser(DESTINATION_DIR), filename)
+        original = os.path.join(os.path.expanduser(SOURCE_DIR), filename)
+        link = os.path.join(os.path.expanduser(DESTINATION_DIR), filename)
 
         # Check that we aren't automatically overwriting anything
-        if os.path.lexists(source_file):
-            if is_link_to(source_file, destination_file):
+        if os.path.lexists(link):
+            if is_link_to(link, original):
                 print(f"Symlink to {filename} already exists!")
                 continue
 
@@ -56,10 +56,10 @@ def main():
                 continue
 
             print(f"Creating symlink to {filename} in Sublime Text directory.")
-            force_remove(destination_file)
+            force_remove(link)
 
-        os.symlink(source_file, destination_file)
-        print(f"{source_file} => {destination_file}\n")
+        os.symlink(original, link)
+        print(f"{link} => {original}\n")
     print("\nProcess completed!")
 
 
