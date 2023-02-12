@@ -56,8 +56,6 @@ cask "firefox"
 # Typeface made for developers
 cask "font-jetbrains-mono"
 cask "font-source-code-pro"
-# Screenshot and screen recording tool
-cask "gyazo"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Provides updates to various Microsoft products
