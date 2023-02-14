@@ -2,7 +2,7 @@
 ##############################
 # This script creates symlinks from the home directory to any desired dotfiles
 # in ${homedir}/.dotfiles. 
-# Installs Homebrew packages.
+# Installs Homebrew packages and casks.
 # Configures iTerm2.
 # Configures Sublime Text.
 ##############################
