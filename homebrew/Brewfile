@@ -5,6 +5,8 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "khanhas/tap"
 tap "romkatv/powerlevel10k"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # Mac App Store command-line interface
@@ -36,7 +38,7 @@ brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # Command-line tool to customize Spotify client
-brew "khanhas/tap/spicetify-cli"
+brew "khanhas/tap/spicetify-cli", link: false
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
 # Password manager that keeps all passwords secure behind one password
