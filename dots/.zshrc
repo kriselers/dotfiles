@@ -94,6 +94,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.iterm2_shell_integration.zsh
 source ~/.aliases
+source /Users/$(whoami)/.config/op/plugins.sh
 
 
 
