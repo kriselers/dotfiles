@@ -2,7 +2,7 @@
 
 """
 !!!! THIS IS MACOS ONLY !!!!
-Sublime Text syncronization.
+Sublime Text synchronization .
 Makes symlinks for all necessary Sublime config files:
     ~/.dotfiles/sublime/Preferences.sublime-settings
     =>
@@ -12,7 +12,6 @@ Makes symlinks for all necessary Sublime config files:
 import glob
 import os
 import shutil
-import sys
 
 SOURCE_DIR = os.getcwd()
 DESTINATION_DIR = "~/Library/Application Support/Sublime Text/Packages/User"
