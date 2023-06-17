@@ -1,8 +1,6 @@
 # .files
 
-These are my dotfiles. Take anything you want but at your own risk.
-
-It mainly targets macOS systems.
+These are my dotfiles. Take anything you want but at your own risk. This mainly targets macOS systems, but I plan to add my Windows configuration at some point.
 
 # Installation
 
@@ -39,9 +37,10 @@ cd .dotfiles
 
 # Post-Installation
 
-- `./dock.sh` (set Dock items)
-- `./defaults.sh` (set macOS defaults)
+- Configure what wasn't configured during this process (i.e. dock items, MacOS defaults, etc.)
 - Install Python versions using `pyenv`
+
 ```bash
 pyenv install 3.10
 pyenv global 3.10.x
+```
