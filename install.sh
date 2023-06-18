@@ -35,7 +35,8 @@ done
 
 # Run the Homebrew script
 echo "\nRunning Homebrew script..."
-./brew.sh
+cd /homebrew && sh ./brew.sh
+cd ${dotfilesdir}
 
 # Configure iTerm2
 echo "Configuring iTerm2..."
@@ -50,7 +51,8 @@ echo "Telling iTerm2 to use the custom preferences in the directory"
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 echo "\nRunning Sublime Text script..."
-./sublime.sh
+cd /sublime && sh ./sublime.sh
+cd ${dotfilesdir}
 
 echo "\n\nMac setup complete! 🤙🏼"
 echo "Don't forget to install Python versions using pyenv.\n"

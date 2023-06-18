@@ -35,7 +35,6 @@ alias cls='clear'
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
 alias ll.='ls -la'
-alias lls='ls -la -S'
-alias llt='ls -la -lt'
+alias lls='ls -la -S'   # List all sorted by size
+alias llt='ls -la -lt'  # List all sorted by time
 alias rm='rm -iv'
-# alias work='cd /c/repos'

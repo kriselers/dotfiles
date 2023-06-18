@@ -1,4 +1,4 @@
-# .files
+# .dotfiles
 
 These are my dotfiles. Take anything you want but at your own risk. This mainly targets macOS systems, but I plan to add my Windows configuration at some point.
 
@@ -38,9 +38,10 @@ cd .dotfiles
 # Post-Installation
 
 - Configure what wasn't configured during this process (i.e. dock items, MacOS defaults, etc.)
-- Install Python versions using `pyenv`
+- Install desired Python versions using `pyenv`
 
 ```bash
 pyenv install 3.10
 pyenv global 3.10.x
 ```
+- Set up virtual environments using pyenv-virtualenv.
