@@ -12,7 +12,7 @@ brew "git"
 # Mac App Store command-line interface
 brew "mas"
 # Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
+brew "openssl@3", link: false
 # Library for command-line editing
 brew "readline"
 # Python version management
@@ -66,6 +66,8 @@ cask "microsoft-auto-update"
 cask "microsoft-office"
 # Calculator and converter application
 cask "numi"
+# Imaging utility to install operating systems to a microSD card
+cask "raspberry-pi-imager"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Tool that provides consistent, highly configurable symbols for apps
@@ -78,6 +80,7 @@ cask "sublime-text"
 cask "visual-studio-code"
 mas "1Password for Safari", id: 1569813296
 mas "GoodNotes", id: 1444383602
+mas "Parcel", id: 639968404
 mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
 vscode "eamodio.gitlens"
