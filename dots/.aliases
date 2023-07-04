@@ -5,7 +5,7 @@ alias sudo='sudo '
 alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/homebrew/Brewfile'
 
 # Get macOS software updates, and update Homebrew and its installed packages
-alias update_system='brew update && brew upgrade && brew cu -y --include-mas && sudo softwareupdate -ia'
+alias update_system='brew update && brew upgrade && brew cu -y --include-mas && softwareupdate -i -a'
 
 # Git aliases
 alias gs='git status -sb'
