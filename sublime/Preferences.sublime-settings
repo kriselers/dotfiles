@@ -1,5 +1,6 @@
 {
     "always_show_minimap_viewport" : true,
+    "auto_complete_commit_on_tab": true,
     "bold_folder_labels": true,
     "caret_style": "phase",
     "close_windows_when_empty": true,
@@ -39,6 +40,7 @@
         "subpixel_antialias"
     ],
     "font_size": 10,
+    "hide_new_tab_button": true,
     "highlight_line": true,
     "highlight_modified_tabs": true,
     "ignored_packages":
@@ -89,17 +91,23 @@
     "open_files_in_new_window": false,
     "overlay_scroll_bars": "enabled",
     "preview_on_click": false,
+    "save_on_focus_lost": true,
     "scroll_past_end": true,
     "scroll_speed": 5.0,
+    "shell_environment": true,
     "show_definitions": false,
     "show_encoding": true,
     "show_errors_inline": false,
     "show_full_path": false,
+    "show_rel_path": true,
+    "show_project_first": true,
     "sidebar_default": true,
     "swallow_startup_errors": true,
     "theme": "Material-Theme-Darker.sublime-theme",
     "translate_tabs_to_spaces": true,
+    "trim_only_modified_white_space": false,
     "trim_trailing_white_space_on_save": true,
     "use_simple_full_screen": true,
+    "wrap_width_style": "min",
     "word_wrap": "auto",
 }

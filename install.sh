@@ -42,11 +42,11 @@ echo "Configuring iTerm2..."
 echo "Downloading Shell Integration..."
 curl -L https://iterm2.com/shell_integration/zsh \
 -o ~/.iterm2_shell_integration.zsh
-echo "Moving iTerm2 settings .plist to ~/Library/Preferences/"
+echo "Moving iTerm2 settings .plist to ~/Library/Preferences/..."
 cp -r iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
-echo "Specifying the preferences directory"
+echo "Specifying the preferences directory..."
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iTerm2/"
-echo "Telling iTerm2 to use the custom preferences in the directory"
+echo "Telling iTerm2 to use the custom preferences in the directory..."
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 echo "\nRunning Sublime Text script..."

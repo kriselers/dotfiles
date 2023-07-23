@@ -1,6 +1,6 @@
 # Settings and Color Settings for iTerm2
 
-If running `install.sh`, these commands are automatically ran. If you're here just to copy iTerm2 settings, then you'll run these yourself.
+If running `install.sh`, these commands are run automatically. If you're here just to copy iTerm2 settings, then you'll run these yourself.
 
 ```bash
 # Specify the preferences directory

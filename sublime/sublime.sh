@@ -7,7 +7,6 @@ curl "https://packagecontrol.io/Package%20Control.sublime-package" > sublime/Pac
 cp -r sublime/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text/Installed\ Packages/Package\ Control.sublime-package
 cp -r sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Package\ Control.sublime-settings
 
-
 # Install Custom Sublime Text settings
 cp -r sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings
 

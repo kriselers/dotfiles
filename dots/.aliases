@@ -7,6 +7,10 @@ alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/ho
 # Get macOS software updates, and update Homebrew and its installed packages
 alias update_system='brew update && brew upgrade && brew cu -y --include-mas && softwareupdate -i -a'
 
+# Update Spicetify
+alias update_spicetify='spicetify upgrade && spicetify restore backup apply'
+alias update_marketplace='curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh && spicetify apply && rm -f /Users/kriselers/.config/spicetify/CustomApps/marketplace/*.md'
+
 # Git aliases
 alias gs='git status -sb'
 alias gcc='git checkout'
@@ -38,3 +42,4 @@ alias ll.='ls -la'
 alias lls='ls -la -S'   # List all sorted by size
 alias llt='ls -la -lt'  # List all sorted by time
 alias rm='rm -iv'
+alias refresh='source ~/.zshrc'

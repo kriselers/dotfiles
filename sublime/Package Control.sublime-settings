@@ -6,7 +6,11 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"Anaconda",
+		"AutoFileName",
 		"BracketHighlighter",
+		"Git",
+		"GitGutter",
 		"Material Theme",
 		"Package Control",
 		"SideBarEnhancements",

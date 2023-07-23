@@ -14,7 +14,7 @@ import os
 import shutil
 
 SOURCE_DIR = os.getcwd()
-DESTINATION_DIR = "~/Library/Application Support/Sublime Text/Packages/User"
+DESTINATION_DIR = os.path.expanduser("~/Library/Application Support/Sublime Text/Packages/User")
 IGNORE = [
     ".DS_Store",
     "readme.md",
@@ -24,22 +24,40 @@ IGNORE = [
 ]
 
 
-def force_remove(path):
+def force_remove(path: str):
+    """
+    Forcefully remove a file or directory.
+
+    Parameters:
+        path (str): The path to the file or directory to be removed.
+    """
     if os.path.isdir(path) and not os.path.islink(path):
         shutil.rmtree(path, False)
     else:
         os.unlink(path)
 
 
-def is_link_to(link, dest):
-    is_link = os.path.islink(link)
-    is_link = is_link and os.readlink(link).rstrip("/") == dest.rstrip("/")
-    return is_link
+def is_link_to(link: str, dest: str) -> bool:
+    """
+    Check if a symbolic link points to a specific destination.
+
+    Parameters:
+        line (str): The path to the symbolic link.
+        dest (str): The destination the link should point to.
+
+    Returns:
+        bool: True if the link points to a destination; otherwise, False.
+    """
+    return os.path.islink(link) and os.readlink(link).rstrip("/") == dest.rstrip("/")
 
 
 def main():
-    print(f"Starting syncronization at {SOURCE_DIR}...\n")
+    """
+    Main function to synchronize dotfiles from SOURCE_DIR to the destination directory.
+    """
+    print(f"Starting synchronization at {SOURCE_DIR}...\n")
     os.chdir(os.path.expanduser(SOURCE_DIR))
+
     for filename in [file for file in glob.glob("*") if file not in IGNORE]:
         original = os.path.join(os.path.expanduser(SOURCE_DIR), filename)
         link = os.path.join(os.path.expanduser(DESTINATION_DIR), filename)
@@ -59,6 +77,7 @@ def main():
 
         os.symlink(original, link)
         print(f"{link} => {original}\n")
+
     print("\nProcess completed!")
 
 

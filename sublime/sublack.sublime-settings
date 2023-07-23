@@ -1,4 +1,6 @@
 {
     "black_on_save": true,
     "black_line_length": 120,
+    // This will likely have to be updated depending on your location of black
+    "black_command": "{$HOME}/.pyenv/shims/black"
 }
