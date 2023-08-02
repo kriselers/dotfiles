@@ -30,7 +30,8 @@
         ".DS_Store",
         "*.class",
         "*.psd",
-        "*.sublime-workspace"
+        "*.sublime-workspace",
+        ".vscode"
     ],
     "font_face": "JetBrains Mono",
     "font_options":
