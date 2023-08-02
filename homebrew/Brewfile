@@ -1,8 +1,6 @@
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "khanhas/tap"
 tap "romkatv/powerlevel10k"
 # GitHub command-line tool
@@ -74,6 +72,8 @@ cask "raspberry-pi-imager"
 cask "rectangle"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Screenshot measurement and annotation tool
+cask "shottr"
 # Music streaming service
 cask "spotify"
 # Text editor for code, markup and prose
