@@ -12,8 +12,8 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 ## **Clovis Colors**
 
-![Clovis iTerm2](https://i.gyazo.com/a6130b95a62ff6f35e0b6c6cc35ffa63.png)
+![Clovis iTerm2](https://i.imgur.com/q7IkToV.png)
 
 ## **Gruvbox Colors**
 
-![Gruvbox iTerm2](https://i.imgur.com/S6MeduY.png)
+![Gruvbox iTerm2](https://i.imgur.com/VP6Q3vM.png)
