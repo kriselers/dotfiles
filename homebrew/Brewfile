@@ -21,6 +21,8 @@ brew "pyenv-virtualenv"
 brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Ruby version manager
+brew "rbenv"
 # Tool Command Language
 brew "tcl-tk"
 # Display directories as trees (with optional color/HTML output)
@@ -36,7 +38,7 @@ brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # Command-line tool to customize Spotify client
-brew "khanhas/tap/spicetify-cli", link: false
+brew "khanhas/tap/spicetify-cli"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
 # Password manager that keeps all passwords secure behind one password
@@ -53,8 +55,12 @@ cask "discord"
 cask "dozer"
 # Web browser
 cask "firefox"
+# Developer targeted fonts with a high number of glyphs
+cask "font-hack-nerd-font"
 # Typeface made for developers
 cask "font-jetbrains-mono"
+# Developer targeted fonts with a high number of glyphs
+cask "font-jetbrains-mono-nerd-font"
 cask "font-source-code-pro"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
@@ -81,7 +87,7 @@ cask "sublime-text"
 # Open-source code editor
 cask "visual-studio-code"
 mas "1Password for Safari", id: 1569813296
-mas "GoodNotes", id: 1444383602
+mas "Goodnotes", id: 1444383602
 mas "Parcel", id: 639968404
 mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
