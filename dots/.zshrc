@@ -12,6 +12,9 @@ eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# rbenv related things
+eval "$(rbenv init -)"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -84,7 +87,7 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git web-search)
 
 source $ZSH/oh-my-zsh.sh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -93,7 +96,7 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.iterm2_shell_integration.zsh
 source ~/.aliases
 source /Users/$(whoami)/.config/op/plugins.sh
-
+source $(dirname $(gem which colorls))/tab_complete.sh
 
 
 
