@@ -8,7 +8,7 @@ alias update_brewfile='brew bundle dump --describe --force --file=~/.dotfiles/ho
 alias update_system='brew update && brew upgrade && brew cu -y --include-mas && softwareupdate -i -a'
 
 # Update Spicetify
-alias update_spicetify='spicetify upgrade && spicetify restore backup apply'
+alias update_spicetify='spicetify backup && spicetify upgrade && spicetify restore backup apply'
 alias update_marketplace='curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh && spicetify apply && rm -f /Users/kriselers/.config/spicetify/CustomApps/marketplace/*.md'
 
 # Git aliases
