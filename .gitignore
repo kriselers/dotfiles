@@ -1,2 +1,4 @@
-# Ignoring Mac specific stuff
+# IDE Settings
 .DS_Store
+.idx
+.vscode
