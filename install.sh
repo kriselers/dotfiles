@@ -73,7 +73,3 @@ echo "\nInstalling Vim Vundle plugins..."
 vim +PluginInstall +qall
 
 echo "\n\nMac setup complete! 🤙🏼"
-echo "Don't forget to install Python versions using pyenv.\n"
-echo "i.e.:"
-echo "\tpyenv install 3.1x"
-echo "\tpyenv global 3.1x.x"
