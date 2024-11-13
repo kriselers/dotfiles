@@ -1,0 +1,126 @@
+# To temporarily bypass an alias, we preceed the command with a \
+# EG: the ls comand is aliased, but to use the normal ls command you would type
+# \ls
+
+# Enable aliases to be sudo'ed
+alias sudo='sudo '
+
+# Edit the .zshrc file
+alias ezrc='vim ~/.zshrc'
+
+# Clear the .zsh_history file
+alias zshclear='echo "" > ~/.zsh_history'
+
+# Load the .zshrc file
+alias refresh='source ~/.zshrc'
+
+# Alias to show the date
+alias da='date "+%Y-%m-%d %A %T %Z"'
+
+# Intuitive map command
+# For example, to list all directories that contain a certain file:
+# find . -name <file> | map dirname
+alias map='xargs -n1'
+
+# Aliases to modified commands
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -iv'
+alias mkdir='mkdir -p'
+alias ps='ps au'
+alias less='less -R'
+alias cls='clear'
+alias vis='vim "+set si"'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Change directory aliases
+alias root='cd /'
+alias home='cd ~'
+alias dev='cd ~/Projects'
+alias cd..='cd ..'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+
+# cd into the old directory
+alias bd='cd "$OLDPWD"'
+
+# Remove a directory and all files
+alias rmd='/bin/rm -rfv'
+
+# Check if colorls is installed and set aliases for multiple directory listing commands
+if command -v colorls >/dev/null 2>&1; then
+    # Aliases for multiple directory listing commands
+    alias la='colorls -alo'               # show hidden files
+    alias ls='colorls -Alo --sd'          # show (almost all) hidden files
+    alias lx='colorls -AloX'              # sort by extension
+    alias lk='colorls -AloS'              # sort by size (largest first)
+    alias lc='colorls -Alot'              # sort by modification time (newest first)
+    alias lr='colorls --tree'             # show tree view of the directory
+    alias lt='colorls -Alotr'             # sort by date
+    alias lw='colorls -A --sd'            # wide listing format
+    alias ll='colorls -Al --sd'           # long listing format
+    alias lf='colorls -Alof'              # files only
+    alias ldir='colorls -Alod'            # directories only
+    alias lgs='colorls -Alo --gs'         # git status ls (fancy)
+else
+    alias la='ls -alH'                   # show hidden files
+    alias ls='ls -AlFhog --color=always' # add colors and file type extensions
+    alias lx='ls -lXBh'                  # sort by extension
+    alias lk='ls -lSrh'                  # sort by size
+    alias lc='ls -lcrh'                  # sort by change time
+    alias lu='ls -lurh'                  # sort by access time
+    alias lr='ls -lRh'                   # recursive ls
+    alias lt='ls -ltrh'                  # sort by date
+    alias lw='ls -xAh'                   # wide listing format
+    alias ll='ls -Fls'                   # long listing format
+    alias lf="ls -l | egrep -v '^d'"     # files only
+    alias ldir="ls -l | egrep '^d'"      # directories only
+fi
+
+# Aliased chmod commands
+alias mx='chmod a+x'
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 666='chmod -R 666'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+
+# Search command line history
+alias h="history | grep "
+
+# Search running processes
+alias p="\ps aux | grep "
+
+# Search files in the current folder
+alias f="find . | grep "
+
+# Count all files (recursively) in the current folder
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+
+# Aliases to show disk space and space used in a folder
+alias diskspace="du -d 1 | sort -n -r |more"
+alias folders='du -h -d 1'
+alias foldersort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+
+# Git aliases
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gc='git checkout'
+alias gcm='git commit -m $2'
+alias glast='git log -1 HEAD --stat'
+alias glog='git log --oneline'
+alias ginit='git init .'
+alias gm='git merge'
+alias gmb='git checkout -b'
+alias gpo='git push origin'
+alias gs='git status -sb'
+alias clone='git clone'
+alias pop='git stash pop'
+alias pull='git pull'
+alias push='git push'
+alias stash='git stash --all'

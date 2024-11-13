@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 ##############################
 # This script creates symlinks from the home directory to any desired dotfiles
 # in ${homedir}/.dotfiles.
@@ -43,26 +44,36 @@ echo "Configuring iTerm2..."
 echo "Downloading Shell Integration..."
 curl -L https://iterm2.com/shell_integration/zsh \
 -o ~/.iterm2_shell_integration.zsh
+
 echo "Moving iTerm2 settings .plist to ~/Library/Preferences/..."
 cp -r iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
+
 echo "Telling iTerm2 to use the custom preferences in the directory..."
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+
 echo "Specifying the preferences directory..."
-defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iTerm2/"
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/Projects/dotfiles/iterm2/"
 
 # Install lscolors
-rbenv install 3.2.2
-rbenv global 3.2.2
+rbenv install 3.3.5
+rbenv global 3.3.5
 rbenv rehash
 rehash
 gem install colorls
 
-echo "\nRunning Sublime Text script..."
-cd /sublime && sh ./sublime.sh && cd ${dotfilesdir}
+# Configure Sublime Text
+echo "\nConfiguring Sublime Text..."
+cd sublime && sh ./sublime.sh && cd ${dotfilesdir}
+
+# Install Vim plugins
+echo "\nInstalling Vim Vundle..."
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+echo "\nInstalling Vim Vundle plugins..."
+vim +PluginInstall +qall
 
 echo "\n\nMac setup complete! 🤙🏼"
 echo "Don't forget to install Python versions using pyenv.\n"
 echo "i.e.:"
-echo "\tpyenv install 3.11"
-echo "\tpyenv global 3.11.x"
-echo "You might also need to verify ruby and colorls versions are up-to-date."
+echo "\tpyenv install 3.1x"
+echo "\tpyenv global 3.1x.x"

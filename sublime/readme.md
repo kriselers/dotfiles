@@ -1,15 +1,20 @@
 # Sublime Text Configuration
 
-My lightweight configuration for Sublime Text. I don't use Sublime to build any code rather as a fast way to view and make quick edit projects.
+My lightweight configuration for Sublime Text. I don't use Sublime to build any
+code rather as a fast way to view and make quick edit projects.
 
-![Sublime Text](https://i.gyazo.com/273f2749a9a10a56de0822a560decc78.png)
+![Sublime Text](../example/sublime.png)
 
-You must first ensure that [Package Control](https://packagecontrol.io/installation) is installed.
+You must first ensure that
+[Package Control](https://packagecontrol.io/installation) is installed.
 
 ## Installed Packages
 
 - [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon)
+- [AutoFileName](https://packagecontrol.io/packages/AutoFileName)
 - [BracketHighlighter](https://packagecontrol.io/packages/BracketHighlighter)
+- [Git](https://packagecontrol.io/packages/Git)
+- [GitGutter](https://packagecontrol.io/packages/GitGutter)
 - [Material Theme](https://packagecontrol.io/packages/Material%20Theme)
 - [SideBarEnhancements](https://packagecontrol.io/packages/SideBarEnhancements)
 - [sublack](https://packagecontrol.io/packages/sublack)

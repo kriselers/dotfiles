@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 """
-!!!! THIS IS MACOS ONLY !!!!
-Sublime Text synchronization .
-Makes symlinks for all necessary Sublime config files:
+Sublime Text synchronization.
+Makes symlinks for all necessary Sublime Text config files:
     ~/.dotfiles/sublime/Preferences.sublime-settings
     =>
     ~/Library/Application Support/Sublime Text/Packages/User/Preferences.sublime-settings
@@ -14,10 +13,12 @@ import os
 import shutil
 
 SOURCE_DIR = os.getcwd()
-DESTINATION_DIR = os.path.expanduser("~/Library/Application Support/Sublime Text/Packages/User")
+DESTINATION_DIR = os.path.expanduser(
+    "~/Library/Application Support/Sublime Text/Packages/User"
+)
 IGNORE = [
     ".DS_Store",
-    "readme.md",
+    "README.md",
     "Package Control.sublime-package",
     "sublimetext-4-orange.icns",
     "sync_sublime.py",

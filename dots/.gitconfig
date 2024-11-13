@@ -1,0 +1,153 @@
+[color]
+    # Enable colors in color-supporting terminals
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+    upstream = cyan
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    # List available aliases
+    aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch --all
+    remotes = remote --verbose
+    # Better 'git branch'
+    bb = !$HOME/.config/git/utils/better-git-branch.sh
+    # Blame but... ignore whitespace
+    #   and detect lines moved or copied in the same commit
+    #   or the commit that created the file
+    #   or any commit at all
+    bllame = git blame -w -C -C -C -L
+    # Shorthand commands
+    ci = commit
+    co = checkout
+    st = status
+    # Show a word diff
+    word-diff = git diff --word-diff
+    # Remove branches that have already been merged with main
+    # A.K.A. 'delete merged'
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    # Display tree-like log, because default log is a pain...
+    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen (%an %ad)%Creset'
+    # Edit global config manually
+    ec = config --global -e
+    # Useful when you have to update your last commit
+    # with staged files without editing the commit message
+    oops = commit --amend --no-edit
+    # Ensure that force-pushing won't lose someone else's work (only mine).
+    push-with-lease = push --force-with-lease
+    # Rename a Git branch
+    rename = branch -m
+    # List local commits that were not pushed to remote repository
+    review-local = "!git log @{push}.."
+    # Edit last commit message
+    reword = commit --amend
+    # All ignored and untracked files are also stashed and then cleaned up with 'git clean'
+    staash = stash --all
+    # Undo last commit but keep changed files in stage
+    uncommit = reset --soft HEAD~1
+    # Unstage any staged changes for file(s)
+    unstage = restore --staged
+    # Remove file(s) from Git but not from disk
+    untrack = rm --cache --
+    # The above only works for single file(s). This is for directories
+    untrackd = rm --cache -r --
+    # Show the user email for the current repository
+    whoami = config user.email
+[core]
+    # Don't paginate output by default
+    pager = cat
+    # Don't consider trailing space change as a cause for merge conflicts
+    whitespace = -trailing-space
+    editor = vim
+    autocrlf = input
+[diff]
+    # Use better, descriptive initials (c, i, w) instead of a/b
+    mnemonicPrefix = true
+    # Show renames/moves as such
+    renames = true
+    # When using --word-diff, assume --word-diff-regex=.
+    wordRegex = .
+    # Display submodule-related information (commit listings)
+    submodule = log
+    # Use VS Code as default diff tool when running 'git diff-tool'
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[fetch]
+    # Auto-fetch submodule changes (sadly, won't auto-update)
+    recurseSubmodules = on-demand
+    # Always attempt to prune remotes when fetching
+    prune = true
+[grep]
+    break = true
+    heading = true
+    lineNumber = true
+    # Consider most regexes to be ERE
+    extendedRegexp = true
+[log]
+    # Use abbrev SHAs whenever possible/relevant instead of full 40 characters
+    abbrevCommit = true
+    # Automatically --follow when given a single path
+    follow = true
+    # Disable for reflog
+    # (becuase there is no dedicated 'reflog' section available)
+    decorate = false
+[merge]
+    # Use VS Code as the merge tool
+    tool = vscode
+    conflictstyle = diff3
+[mergetool]
+    # Clean backup files created by merge tools on tool exit
+    keepBackup = false
+    # Clean up temp files created by merge tools on tool exit
+    keepTemporaries = false
+    # Put the temp files in a dedicated dir anyway
+    writeToTemp = true
+    # Auto-accept file prompts when launching merge tools
+    prompt = false
+[push]
+    # Default push should only push to the current branch to its push target, regardless of its remote name
+    default = upstream
+    # When pushing, also push tags whose commit-ishs are now reachable upstream
+    followTags = true
+    autoSetupRemote = true
+[status]
+    # Display submodule rev change summaries in status
+    submoduleSummary = true
+    # Recursively traverse untracked directories to display all contents
+    showUntrackedFiles = all
+[tag]
+    # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0
+    sort = version:refname
+[versionsort]
+    prereleaseSuffix = -pre
+    prereleaseSuffix = .pre
+    prereleaseSuffix = -beta
+    prereleaseSuffix = .beta
+    prereleaseSuffix = -rc
+    prereleaseSuffix = .rc
+[init]
+    defaultBranch = main
+[user]
+	name = Kristopher Elers
+	email = kristopherelers@gmail.com
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[maintenance]
+	repo = /Users/kriselers/Projects/dotfiles

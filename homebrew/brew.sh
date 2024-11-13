@@ -1,4 +1,5 @@
-!#!/bin/zsh
+#!/bin/zsh
+
 ##############################
 # This script will install all the Homebrew packages from Brewfile
 ##############################
@@ -13,4 +14,5 @@ brew upgrade
 brew bundle
 
 # Install everything from /homebrew/Brewfile
-brew bundle --file=~/.dotfiles/homebrew/Brewfile
+brew bundle \
+    --file="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/Brewfile

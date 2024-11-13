@@ -1,78 +1,114 @@
 #!/usr/bin/env python
 
 """
-!!!! THIS IS MACOS ONLY !!!!
-Dotfiles syncronization. Useful for updating existing dotfiles if everything
+Dotfiles synchronization. Useful for updating existing dotfiles if everything
 else is already installed on the system.
-Makes symlinks for all files: ~/.dotfiles/.zshrc => ~/.zshrc
+
+Makes symlinks for all files: ~/Projects/dotfiles/dots/.zshrc => ~/.zshrc
 """
 
-import glob
-import os
 import shutil
+from argparse import ArgumentParser
+from pathlib import Path
 
-SOURCE_DIR = os.getcwd() + "/dots"
-IGNORE = [".DS_Store"]
 
-
-def force_remove(path: str):
+def force_remove(path: Path) -> None:
     """
     Forcefully remove a file or directory.
 
     Parameters:
-        path (str): The path to the file or directory to be removed.
+        path (Path): The path to the file or directory to be removed.
     """
-    if os.path.isdir(path) and not os.path.islink(path):
+    if path.is_dir() and not path.is_symlink():
         shutil.rmtree(path, False)
     else:
-        os.unlink(path)
+        path.unlink()
 
 
-def is_link_to(link: str, dest: str) -> bool:
+def is_link_to(link: Path, dest: Path) -> bool:
     """
     Check if a symbolic link points to a specific destination.
 
     Parameters:
-        link (str): The path to the symbolic link.
-        dest (str): The destination the link should point to.
+        link (Path): The path to the symbolic link.
+        dest (Path): The destination the link should point to.
 
     Return:
         bool: True if the link points to the destination; otherwise, False.
     """
-    is_link = os.path.islink(link)
-    is_link = is_link and os.readlink(link).rstrip("/") == dest.rstrip("/")
+    is_link = link.is_symlink()
+    is_link = is_link and link.resolve().as_posix().rstrip(
+        "/"
+    ) == dest.resolve().as_posix().rstrip("/")
     return is_link
 
 
-def main():
+def synchronize_dotfiles(
+    source_dir: Path, target_dir: Path, force: bool, verbose: bool
+) -> None:
     """
     Main function to synchronize dotfiles from SOURCE_DIR to the home directory.
+
+    Parameters:
+        source_dir (Path): The source directory containing dotfiles.
+        target_dir (Path): The target directory where dotfiles will be synchronized.
+        force (bool): If True, forcefully update all files without prompting.
     """
-    print(f"Starting syncronization at {SOURCE_DIR}...\n")
-    os.chdir(os.path.expanduser(SOURCE_DIR))
+    for path in source_dir.rglob("*"):
+        if path.name == ".DS_Store":
+            continue
 
-    for filename in [file for file in glob.glob(".*") if file not in IGNORE]:
-        dotfile = os.path.join(os.path.expanduser("~"), filename)
-        source = os.path.join(SOURCE_DIR, filename).replace("~", ".")
+        if path.is_file():
+            target_path = target_dir / path.relative_to(source_dir)
 
-        # Check that we aren't overwriting anything
-        if os.path.lexists(dotfile):
-            if is_link_to(dotfile, source):
-                print(f"Symlink to {source} already exists in {dotfile}")
-                continue
+            # Check that we aren't overwriting anything
+            if target_path.exists() or target_path.is_symlink():
+                if is_link_to(target_path, path):
+                    print(
+                        f"Symlink to {str(path)!r} already exists in {str(target_path)!r}"
+                    )
+                    continue
 
-            response = input(f"Overwrite file '{dotfile}'? [y/N] ")
-            if not response.lower().startswith("y"):
-                continue
+                if not force:
+                    response = input(f"Overwrite file {str(target_path)!r}? [y/N] ")
+                    if not response.lower().startswith("y"):
+                        continue
+            else:
+                # Copy file to target path if it doesn't exist
+                if verbose:
+                    print(
+                        f"{str(path.name)!r} doesn't exist! Copying to {str(path.parent)!r} before creating symlink."
+                    )
+                shutil.copy2(path, target_path)
 
-            print(f"Creating symlink to {dotfile} in home directory")
-            force_remove(dotfile)
+            if verbose:
+                print(
+                    f"Creating symlink to {str(target_path)!r} in {str(target_dir)!r}"
+                )
+            force_remove(target_path)
 
-        os.symlink(source, dotfile)
-        print(f"{dotfile} => {source}")
+            target_path.symlink_to(path)
+            print(f"{str(target_path)!r} => {str(path)!r}")
 
-    print("\nProcess completed!")
+    print("\nProcess completed successfully")
 
 
 if __name__ == "__main__":
-    main()
+    parser = ArgumentParser(
+        description="Synchronize dotfiles from the ./dots directory to the home directory."
+    )
+    parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="Forcefully update all files without prompting",
+    )
+    parser.add_argument(
+        "-v", "--verbose", action="store_true", help="Print more verbose output"
+    )
+    args = parser.parse_args()
+
+    SOURCE_DIR = Path.cwd() / "dots"
+    TARGET_DIR = Path.home()
+
+    synchronize_dotfiles(SOURCE_DIR, TARGET_DIR, args.force, args.verbose)
