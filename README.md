@@ -2,8 +2,7 @@
 
 These are my dotfiles. This repository contains a random collection of things to
 help me feel comfortable working in the terminal. Take anything you want but at
-your own risk. This mainly targets macOS systems, but I plan to add my Windows
-configuration at some point.
+your own risk. This mainly targets macOS systems.
 
 I'll be the first to admit that this wasn't created by me from scratch. Most of
 it is "leveraged" from the Internet, and I've customized it to fit my
@@ -37,27 +36,28 @@ risk!**
    ```
 
 4. Clone this repository into the desired location (I like to keep it in
-   `~/Projects/.dotfiles`):
+   `~/Projects/dotfiles`):
 
    ```bash
-   git clone https://github.com/kriselers/dotfiles.git ~/projects/.dotfiles
+   git clone https://github.com/kriselers/dotfiles.git ~/projects/dotfiles
    ```
 
-5. `cd` to the `.dotfiles` directory and run `install.sh` supplying your home
+5. `cd` to the `dotfiles` directory and run `install.sh` supplying your home
    directory:
 
    ```bash
-   cd .dotfiles
+   cd ~/Projects/dotfiles
    ./install.sh <home_directory>
    ```
 
 ## Add custom commands without creating a new fork
 
-If `~/.extra` exists, it will be sourced along with the other files. You can use
-this to add a few custom commands without the need to fork this entire
-repository, or to add commands you don't want to commit to a public repository.
+If `~/.config/oh-my-zsh/.extra` exists, it will be sourced along with the other
+files. You can use this to add a few custom commands without the need to fork
+this entire repository, or to add commands you don't want to commit to a public
+repository.
 
-My `~/.extra` looks something like this:
+My `.extra` looks something like this:
 
 ```bash
 # Git credentials
@@ -71,14 +71,14 @@ GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
 
-You could also use `~/.extra` to override settings, functions and aliases from
-my dotfiles repository. It's probably better to fork this repository instead,
+You could also use `.extra` to override settings, functions and aliases from my
+dotfiles repository. It's probably better to fork this repository instead,
 though.
 
 ## Using the sync script
 
 The `sync.py` script is designed to streamline the management of these dotfiles
-by creating symbolic links from the files within the `dots/` directory to your
+by creating symbolic links from the files within the `dots/` directory to the
 home directory. This makes it very easy to keep things up to date by just
 pulling from `main`.
 
@@ -97,5 +97,6 @@ pyenv global 3.10.x
 
 ## Contributing
 
-Contributions are welcome! Please submit a pull request or open an issue to
-discuss any changes or improvements.
+These dotfiles are by no means perfect, or as optimized as they could be. Due to
+this, contributions are welcome! Please submit a pull request or open an issue
+to discuss any changes or improvements.
