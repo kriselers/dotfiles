@@ -86,10 +86,10 @@
 [interactive]
     singleKey = true
 
-[url "https://github.com/kriselers/"]
+[url "git@github.com:kriselers/"]
     insteadOf = "me:"
 
-[url "https://github.com/"]
+[url "git@github.com:"]
     insteadOf = "gh:"
 
 [user]
