@@ -1,6 +1,7 @@
 [core]
     editor = vim
     autocrlf = input
+    pager = less -FRX
     preloadindex = true
     whitespace = -trailing-space
 
@@ -71,6 +72,16 @@
     prompt = false
     keepBackup = false
     writeToTemp = true
+
+[pager]
+    log = true
+    diff = true
+    show = true
+    blame = true
+
+    branch = false
+    tag = false
+    status = false
 
 [interactive]
     singleKey = true
