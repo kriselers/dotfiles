@@ -1,0 +1,10 @@
+# IDE Settings
+.DS_Store
+.idx/
+.vscode/
+
+# Pyenv version
+.python-version
+
+# Ignore the extras file
+.extra

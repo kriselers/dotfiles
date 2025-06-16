@@ -1,0 +1,5 @@
+{
+    "black_on_save": true,
+    // This will likely have to be updated depending on your location of black
+    "black_command": "~/.pyenv/shims/black"
+}

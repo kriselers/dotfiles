@@ -1,0 +1,25 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AutoFileName",
+		"BracketHighlighter",
+		"Git",
+		"GitGutter",
+		"LSP",
+		"LSP-bash",
+		"LSP-clangd",
+		"LSP-file-watcher-chokidar",
+		"LSP-json",
+		"LSP-pyright",
+		"LSP-ruff",
+		"LSP-yaml",
+		"Material Theme",
+		"Package Control",
+		"SideBarEnhancements",
+	],
+}
