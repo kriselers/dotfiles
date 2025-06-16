@@ -1,135 +1,86 @@
+[core]
+    editor = vim
+    autocrlf = input
+    preloadindex = true
+    whitespace = -trailing-space
+
 [color]
     ui = auto
-[color "branch"]
-    current = magenta
-    local = default
-    remote = yellow
-    upstream = green
-    plain = blue
-[color.decorate]
-    HEAD = red
-    branch = blue
-    tag = yellow
-    remoteBranch = magenta
-[color "diff"]
-    meta = black bold
-    frag = magenta
-    context = white
-    whitespace = red reverse
-    old = red
-[color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+
 [alias]
-    ; aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-    aliases = "!git config --get-regexp ^alias\\. | grep -v '^alias\\.aliases' | awk '{sub(/^alias\\./, \"\", $1); printf \"%s =\", $1; for (i=2; i<=NF; i++) printf \" %s\", $i; print \"\"}'"
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
     lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen (%an %ad)%Creset'
     pr = pull --rebase
     rh = reset HEAD
-    cod = checkout .
     conf = config --global --edit
-    cdf = clean -df
-
-    tags = tag -l
-    branches = branch --all
-    remotes = remote --verbose
-    bllame = blame -w -C -C --date=short
-    word-diff = diff --word-diff
-    # Useful when you have to update your last commit
-    # with staged files without editing the commit message
     oops = commit -a --amend --no-edit
-    rename = branch -m
-    # List local commits that were not pushed to remote repository
     local = "!git log @{push}.."
-    # Edit last commit message
     reword = commit --amend
-    # All ignored and untracked files are also stashed and then cleaned up with 'git clean'
-    staash = stash --all
-    # Undo last commit but keep changed files in stage
     uncommit = reset --soft HEAD~1
-    # Unstage any staged changes for file(s)
     unstage = restore --staged
-    # Remove file(s) from Git but not from disk
-    untrack = rm --cache --
-    # Same as above but for directories
-    untrackd = rm --cache -r --
+    untrack = rm --cached --
+    branches = branch --all
+    remotes = remote -v
+    tags = tag -l
     whoami = config user.email
-[blame]
-    coloring = highlightRecent
-    date = relative
-[branch]
-    sort = -committerdate
+    aliases = "!git config --get-regexp ^alias\\. | grep -v '^alias\\.aliases' | awk '{sub(/^alias\\./, \"\", $1); printf \"%s =\", $1; for (i=2; i<=NF; i++) printf \" %s\", $i; print \"\"}'"
+
 [commit]
-    template = ~/.config/git/template
     verbose = true
-[core]
-    pager = cat
-    whitespace = -trailing-space
-    editor = vim
-    autocrlf = input
-    preloadindex = true
-[diff]
-    tool = vscode
-    context = 3
-    renames = copies
-    interHunkContext = 10
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-[fetch]
-    prune = true
-[grep]
-    break = true
-    heading = true
-    lineNumber = true
-    # Consider most regexes to be ERE
-    extendedRegexp = true
-[interactive]
-    singleKey = true
-[log]
-    abbrevCommit = true
-    follow = true
-    graphColors = blue,yellow,cyan,magenta,green,red
-[merge]
-    tool = vscode
-    conflictstyle = diff3
-[mergetool]
-    keepBackup = false
-    keepTemporaries = false
-    writeToTemp = true
-    prompt = false
-[pager]
-    branch = false
-    tag = false
+    template = ~/.config/git/template
+
 [push]
     default = upstream
     followTags = true
     autoSetupRemote = true
+
 [pull]
     default = current
-[rebase]
-    autoStash = true
-    missingCommitsCheck = warn
-[status]
-    submoduleSummary = true
-    showUntrackedFiles = all
-    branch = true
-    showStash = true
-[tag]
-    sort = -taggerdate
+
+[fetch]
+    prune = true
+
 [init]
     defaultBranch = main
-[url "https://guthub.com/kriselers/"]
+
+[log]
+    abbrevCommit = true
+    follow = true
+
+[rebase]
+    autoStash = true
+
+[status]
+    showUntrackedFiles = all
+    branch = true
+
+[diff]
+    renames = copies
+    context = 3
+    interHunkContext = 10
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+    tool = vscode
+    conflictstyle = diff3
+
+[mergetool]
+    prompt = false
+    keepBackup = false
+    writeToTemp = true
+
+[interactive]
+    singleKey = true
+
+[url "https://github.com/kriselers/"]
     insteadOf = "me:"
+
 [url "https://github.com/"]
     insteadOf = "gh:"
-[rerere]
-	enabled = true
-[column]
-	ui = auto
-[maintenance]
-	repo = /Users/kriselers/Projects/dotfiles
+
 [user]
 	name = Kristopher Elers
 	email = kristopherelers@gmail.com
