@@ -37,16 +37,9 @@ alias root='cd /'
 alias home='cd ~'
 alias dev='cd ~/Projects'
 alias cd..='cd ..'
-alias .1='cd ..'
-alias .2='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
 
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
-
-# Remove a directory and all files
-alias rmd='\rm -rfv'
 
 # Use color output and show file type extensions
 alias ls='\ls -AlFhog --color=auto'

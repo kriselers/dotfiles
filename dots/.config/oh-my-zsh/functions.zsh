@@ -1,12 +1,13 @@
 # Update Brewfile
-update_brewfile ()
-{
-    brew bundle dump --describe --force --file=$HOME/Projects/dotfiles/homebrew/Brewfile
+update_brewfile() {
+    brew bundle dump \
+        --describe \
+        --force \
+        --file=$HOME/Projects/dotfiles/homebrew/Brewfile
 }
 
 # Get macOS software updates, and update Homebrew and its installed packages
-update_system ()
-{
+update_system () {
     brew update
     brew upgrade
     brew cu -y --cleanup --include-mas
@@ -18,10 +19,10 @@ update_spicetify() {
     echo "🎧 Backing up current Spicetify config..."
     spicetify backup > /dev/null
 
-    echo "⬆️ Upgrading Spicetify..."
+    echo "⬆️  Upgrading Spicetify..."
     spicetify upgrade > /dev/null
 
-    echo "♻️ Restoring backup and applying..."
+    echo "♻️  Restoring backup and applying..."
     spicetify restore backup apply > /dev/null
 
     echo "🛍 Installing/updating Spicetify Marketplace..."
@@ -42,30 +43,6 @@ update_spicetify() {
 path ()
 {
     echo $PATH | tr ':' '\n'
-}
-
-# Extracts any archive(s) (if unp is uninstalled)
-extract ()
-{
-    for archive in $*; do
-        if [ -f $archive ] ; then
-            case $archive in
-                *.tar.bz2)   tar xvjf $archive    ;;
-                *.tar.gz)    tar xvzf $archive    ;;
-                *.bz2)       bunzip2 $archive     ;;
-                *.rar)       rar x $archive       ;;
-                *.gz)        gunzip $archive      ;;
-                *.tar)       tar xvf $archive     ;;
-                *.tbz2)      tar xvjf $archive    ;;
-                *.tgz)       tar xvzf $archive    ;;
-                *.zip)       unzip $archive       ;;
-                *.Z)         7z x $archive        ;;
-                *)           echo "Don't know how to extract '$archive'..." ;;
-            esac
-        else
-            echo "'$archive' is not a valid file!"
-        fi
-    done
 }
 
 # Creates a tar file of a provided directory and optionally places in a specific
@@ -107,7 +84,8 @@ ftext ()
     # -r recursive search
     # -n causes line number to be printed
     # optional: -F treat search term as a literal, not a regular expression
-    # optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
+    # optional: -l only print filenames and not the matching lines
+    #           ex. grep -irl "$1" *
     grep -iIHrn --color=always "$1" . | less -r
 }
 
@@ -135,12 +113,6 @@ mvg ()
     else
         mv "$src" "$dest"
     fi
-}
-
-# Create and go to the directory
-mkdirg ()
-{
-    mkdir -p "$1" && cd "$1" || return 1
 }
 
 # Goes up a specified number of directories (i.e., up 4)
