@@ -48,5 +48,8 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/aliases.zsh
 source $ZSH_CUSTOM/exports.zsh
 source $ZSH_CUSTOM/functions.zsh
+if [ -r "$ZSH_CUSTOM/extra.zsh" ] && [ -f "$ZSH_CUSTOM/extra.zsh" ]; then
+  source $ZSH_CUSTOM/extra.zsh
+fi
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
