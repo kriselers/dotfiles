@@ -48,30 +48,23 @@ find "$dotfiles_dir/dots" -type f ! -name ".DS_Store" | while read -r file; do
     create_symlink "$file" "$target_item"
 done
 
-# Run the Homebrew script
 echo "Running Homebrew script..." && echo
 cd homebrew && ./brew.sh && cd -
 
-# Configure iTerm2
 echo "Configuring iTerm2..."
 echo "Downloading Shell Integration..."
 curl -L https://iterm2.com/shell_integration/zsh \
     -o ~/.iterm2_shell_integration.zsh
-
 echo "Moving iTerm2 settings file to ~/Library/Preferences/..."
 cp -r iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/
-
 echo "Telling iTerm2 to use the custom preferences in the directory..."
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
-
 echo "Telling iTerm2 to use dotfiles directory as preferences location..." && echo
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "${dotfiles_dir}/iterm2/"
 
-# Configure Sublime Text
 echo "Configuring Sublime Text..." && echo
 cd sublime && ./sublime.sh && cd -
 
-# Install Vim plugins
 echo "Installing Vim Vundle..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
