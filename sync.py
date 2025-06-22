@@ -39,7 +39,7 @@ def is_link_to(link: Path, dest: Path) -> bool:
         link (Path): The path to the symbolic link.
         dest (Path): The destination the link should point to.
 
-    Return:
+    Returns:
         bool: True if the link points to the destination; otherwise, False.
     """
     is_link = link.is_symlink()
