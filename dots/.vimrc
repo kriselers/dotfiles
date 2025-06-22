@@ -6,14 +6,13 @@
 " Sections:
 "    -> Plugins
 "    -> General
-"    -> VIM user interface
+"    -> Vim user interface
 "    -> Colors and Fonts
 "    -> Files and Backups
 "    -> Text, tab and indent related
 "    -> Visual mode related
 "    -> Moving around, tabs and buffers
 "    -> Editing mappings
-"    -> vimgrep searching and cope displaying
 "    -> Spell checking
 "    -> Misc
 "    -> Plugin configuration
@@ -40,11 +39,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Essential plugins
 Plugin 'airblade/vim-gitgutter'
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mg979/vim-visual-multi'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'machakann/vim-highlightedyank'
 
 " UI enhancements
@@ -54,9 +53,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " Color schemes
 Plugin 'joshdick/onedark.vim'
 Plugin 'morhetz/gruvbox'
-
-" Language-specific enhancements
-Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " All Plugins must be added before this line
 call vundle#end()
@@ -86,7 +82,7 @@ nnoremap <leader>w :update<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
+" => Vim user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep 7 lines above/below cursor
 set so=7
@@ -256,8 +252,8 @@ nnoremap <silent> <leader><CR> :noh<CR>
 " Smart window navigation
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
+nnoremap <C-h> <Cmd>wincmd h<CR>
 " Buffer management
 nnoremap <leader>bd :bp\|bd #<CR>
 nnoremap <leader>l :bnext<CR>
@@ -327,7 +323,7 @@ nnoremap <leader>pp :setlocal paste!<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin Configuration
+" => Plugin configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""
 " Airline
@@ -336,7 +332,6 @@ nnoremap <leader>pp :setlocal paste!<CR>
 set t_Co=256
 " Airline basic settings
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox'
 " Enable showing the current branch (requires vim-fugitive)
 let g:airline#extensions#branch#enabled = 1
 " Enable tabline to show open buffers at the top
@@ -354,23 +349,33 @@ let g:airline_section_z = '%l:%c'
 
 
 """""""""""""""""""""""""""""
-" GitGutter
-"""""""""""""""""""""""""""""
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-
-"""""""""""""""""""""""""""""
 " NERDTree
 """""""""""""""""""""""""""""
 " Toggle NERDTree with <leader>n
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeFocusCR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " Automatically close Vim if NERDTree is the only window left
 autocmd bufenter * if (winnr("$") == 1 && &filetype == 'nerdtree') | q | endif
 
 " Start NERDTree automatically when Vim starts without a file
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+    \ && exists('b:NERDTree')
+    \ && b:NERDTree.isTabTree()
+    \ | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and
+" bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+'
+    \ && bufname('%') !~ 'NERD_tree_\d\+'
+    \ && winnr('$') > 1
+    \ | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Show hidden files
 let NERDTreeShowHidden=1
@@ -395,13 +400,9 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 """""""""""""""""""""""""""""
-" EditorConfig-Vim
+" NERDTree Git
 """""""""""""""""""""""""""""
-" Ensure plugin plays nicely with the 'fugitive' plugin
-let g:EditorConfig_exclue_patterns = ['fugitive://.*']
-
-" Disable plugin for 'gitcommit's
-au FileType gitcommit let b:EditorConfig_disable = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 """""""""""""""""""""""""""""
 " Highlightedyank
