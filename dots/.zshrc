@@ -5,9 +5,6 @@ if which pyenv-virtualenv-init > /dev/null; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
-# Created by `pipx` on 2025-06-12 04:45:20
-export PATH="$PATH:/Users/kriselers/.local/bin"
-
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
 
