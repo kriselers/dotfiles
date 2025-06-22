@@ -7,4 +7,4 @@
 .python-version
 
 # Ignore the extras file
-.extra
+extra.zsh
