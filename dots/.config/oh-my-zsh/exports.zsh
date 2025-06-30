@@ -9,5 +9,5 @@ export HISTSIZE=500
 # Erase duplicate entries in history file
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim

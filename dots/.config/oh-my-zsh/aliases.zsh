@@ -3,7 +3,7 @@
 # \ls
 
 # Edit the .zshrc file
-alias ezrc='vim $HOME/Projects/dotfiles/dots/.zshrc'
+alias ezrc='nvim $HOME/Projects/dotfiles/dots/.zshrc'
 
 # Clear the .zsh_history file
 alias zshclear='echo "" > $HOME/.zsh_history'
@@ -28,6 +28,7 @@ alias ps='ps au'
 alias less='less -R'
 alias cls='clear'
 alias vis='vim "+set si"'
+alias vim='nvim'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
