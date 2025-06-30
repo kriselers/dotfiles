@@ -76,7 +76,7 @@ set mouse=a
 set number
 " Show relative line numbers on other lines
 set relativenumber
-let mapleader = "\\"
+let mapleader = " "
 " Fast save with <leader>w
 nnoremap <leader>w :update<CR>
 
