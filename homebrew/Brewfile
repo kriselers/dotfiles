@@ -2,12 +2,20 @@ tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "jandedobbeleer/oh-my-posh"
 tap "khanhas/tap"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Handy way to save and run project-specific commands
+brew "just"
+# Utility for directing compilation
+brew "make"
 # Mac App Store command-line interface
 brew "mas"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Platform built on V8 to build network applications
@@ -26,6 +34,8 @@ brew "pyenv-virtualenv"
 brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Tool Command Language
 brew "tcl-tk"
 # Display directories as trees (with optional color/HTML output)
