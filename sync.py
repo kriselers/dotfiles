@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-
 """
 Dotfiles synchronization. Useful for updating existing dotfiles if everything
 else is already installed on the system.
 
-Makes symlinks for all files: ~/Projects/dotfiles/dots/.zshrc => ~/.zshrc
+Makes symlinks for all files: e.g., ~/Projects/dotfiles/dots/.zshrc => ~/.zshrc
 """
 
 import logging
@@ -128,3 +126,4 @@ if __name__ == "__main__":
     logger.info("Synchronizing dotfiles from '%s' to '%s'", SOURCE_DIR, TARGET_DIR)
     synchronize_dotfiles(SOURCE_DIR, TARGET_DIR, args.force)
     logger.info("\nSynchronization complete.")
+
