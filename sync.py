@@ -126,4 +126,3 @@ if __name__ == "__main__":
     logger.info("Synchronizing dotfiles from '%s' to '%s'", SOURCE_DIR, TARGET_DIR)
     synchronize_dotfiles(SOURCE_DIR, TARGET_DIR, args.force)
     logger.info("\nSynchronization complete.")
-
