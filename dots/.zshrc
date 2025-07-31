@@ -23,7 +23,6 @@ zstyle :omz:plugins:iterm2 shell-integration yes
 plugins=(
   brew
   copypath
-  git-commit
   iterm2
   macos
   poetry
