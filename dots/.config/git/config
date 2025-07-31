@@ -1,102 +1,109 @@
-[core]
-    editor = vim
-    autocrlf = input
-    pager = less -FRX
-    preloadindex = true
-    whitespace = -trailing-space
+[alias]
+    aliases = "!git config --get-regexp ^alias\\. | grep -v '^alias\\.aliases' | awk '{sub(/^alias\\./, \"\", $1); printf \"%s =\", $1; for (i=2; i<=NF; i++) printf \" %s\", $i; print \"\"}'"
+    branches = branch --all
+    conf = config --global --edit
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen (%an %ad)%Creset'
+    local = "!git log @{push}.."
+    oops = commit -a --amend --no-edit
+    pr = pull --rebase
+    remotes = remote -v
+    reword = commit --amend
+    rh = reset HEAD
+    tags = tag -l
+    uncommit = reset --soft HEAD~1
+    unstage = restore --staged
+    untrack = rm --cached --
+    whoami = config user.email
+
+[branch]
+    sort = -committerdate
+
+[column]
+    ui = auto
+
+[commit]
+    template = ~/.config/git/template
+    verbose = true
 
 [color]
     ui = auto
 
-[alias]
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen (%an %ad)%Creset'
-    pr = pull --rebase
-    rh = reset HEAD
-    conf = config --global --edit
-    oops = commit -a --amend --no-edit
-    local = "!git log @{push}.."
-    reword = commit --amend
-    uncommit = reset --soft HEAD~1
-    unstage = restore --staged
-    untrack = rm --cached --
-    branches = branch --all
-    remotes = remote -v
-    tags = tag -l
-    whoami = config user.email
-    aliases = "!git config --get-regexp ^alias\\. | grep -v '^alias\\.aliases' | awk '{sub(/^alias\\./, \"\", $1); printf \"%s =\", $1; for (i=2; i<=NF; i++) printf \" %s\", $i; print \"\"}'"
-	build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	chore = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"chore${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	ci = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"ci${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	docs = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"docs${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	feat = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"feat${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	fix = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"fix${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	perf = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"perf${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	refactor = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"refactor${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	rev = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"revert${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	style = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"style${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	test = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"test${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-	wip = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"wip${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
+[core]
+    autocrlf = input
+    editor = nvim
+    pager = less -FRX
+    preloadindex = true
+    whitespace = -trailing-space
 
-[commit]
-    verbose = true
-    template = ~/.config/git/template
-
-[push]
-    default = upstream
-    followTags = true
-    autoSetupRemote = true
-
-[pull]
-    default = current
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    context = 3
+    interHunkContext = 10
+    mnemonicPrefix = true
+    renames = true
 
 [fetch]
+    all = true
     prune = true
+    pruneTags = true
+
+[help]
+    autocorrect = prompt
 
 [init]
     defaultBranch = main
+
+[interactive]
+    singleKey = true
 
 [log]
     abbrevCommit = true
     follow = true
 
-[rebase]
-    autoStash = true
-
-[status]
-    showUntrackedFiles = all
-    branch = true
-
-[diff]
-    renames = copies
-    context = 3
-    interHunkContext = 10
-    tool = vscode
-
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-
 [merge]
-    tool = vscode
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [mergetool]
-    prompt = false
     keepBackup = false
+    prompt = false
     writeToTemp = true
 
 [pager]
-    log = true
-    diff = true
-    show = true
     blame = true
+    diff = true
+    log = true
+    show = true
 
     branch = false
-    tag = false
     status = false
+    tag = false
 
-[interactive]
-    singleKey = true
+[pull]
+    default = current
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+    default = upstream
+    followTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[status]
+    branch = true
+    showUntrackedFiles = all
+
+[tag]
+    sort = version:refname
 
 [url "git@github.com:kriselers/"]
     insteadOf = "me:"
@@ -107,5 +114,3 @@
 [user]
 	name = Kristopher Elers
 	email = kristopherelers@gmail.com
-[oh-my-zsh]
-	git-commit-alias = 3e7ef0182f59c7990a52cf6ec2981adb56d5b368
