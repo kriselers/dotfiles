@@ -19,13 +19,10 @@ zstyle :omz:plugins:iterm2 shell-integration yes
 # Load plugins
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  brew
   copypath
   iterm2
   macos
-  poetry
   web-search
 )
 
@@ -46,8 +43,10 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/aliases.zsh
 source $ZSH_CUSTOM/exports.zsh
 source $ZSH_CUSTOM/functions.zsh
+
 if [ -r "$ZSH_CUSTOM/extra.zsh" ] && [ -f "$ZSH_CUSTOM/extra.zsh" ]; then
   source $ZSH_CUSTOM/extra.zsh
 fi
+
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
