@@ -6,12 +6,16 @@ Makes symlinks for all files: e.g., ~/Projects/dotfiles/dots/.zshrc => ~/.zshrc
 """
 
 import logging
-
-from argparse import ArgumentParser
-from shutil import rmtree, copy2
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
+from shutil import copy2, rmtree
 
 logger = logging.getLogger(__name__)
+
+
+class SyncArgs(Namespace):
+    force: bool = False
+    verbose: bool = False
 
 
 def force_remove(path: Path) -> None:
@@ -91,7 +95,7 @@ def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> Non
                 path.name,
                 target_path.parent,
             )
-            copy2(path, target_path)
+            _ = copy2(path, target_path)
 
         logger.debug("Creating symlink to '%s' in '%s'", target_path, target_dir)
         force_remove(target_path)
@@ -106,16 +110,16 @@ if __name__ == "__main__":
     parser = ArgumentParser(
         description="Synchronize dotfiles from the ./dots directory to the home directory."
     )
-    parser.add_argument(
+    _ = parser.add_argument(
         "-f",
         "--force",
         action="store_true",
         help="Forcefully update all files without prompting",
     )
-    parser.add_argument(
+    _ = parser.add_argument(
         "-v", "--verbose", action="store_true", help="Print more verbose output"
     )
-    args = parser.parse_args()
+    args = parser.parse_args(namespace=SyncArgs())
 
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
