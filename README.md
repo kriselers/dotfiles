@@ -43,16 +43,18 @@ risk!**
    git clone https://github.com/kriselers/dotfiles.git ~/Projects/dotfiles
    ```
 
-5. `cd` to the `dotfiles` directory and run the Make entrypoint: directory:
+5. `cd` to the `dotfiles` directory and run the Make entrypoint:
 
    ```bash
    cd ~/Projects/dotfiles
    make install
    ```
 
-   > `install.sh` is now a deprecated compatibility wrapper around
-   > `make install`. If needed, it still accepts an optional home directory
-   > argument.
+   To verify prerequisites before install:
+
+   ```bash
+   make doctor
+   ```
 
    To preview symlink changes without touching files:
 

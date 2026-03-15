@@ -9,23 +9,34 @@ DRY_RUN       ?= 0
 
 # ─── Phony targets ────────────────────────────────────────────────────────────
 .DEFAULT_GOAL := install
-.PHONY: help install symlink brew iterm2 sublime clean
+.PHONY: help doctor install symlink brew iterm2 sublime clean
 
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
+	@echo "  doctor    Validate required local tooling (make, python3, brew)"
 	@echo "  install   Run all setup steps (default)"
 	@echo "  symlink   Create symlinks for files in dots/ (set DRY_RUN=1 to preview)"
 	@echo "  brew      Run Homebrew bundle script"
 	@echo "  iterm2    Configure iTerm2 preferences"
 	@echo "  sublime   Configure Sublime Text"
 	@echo "  clean     Remove symlinks created in home directory"
-	@echo ""
-	@echo "Note: install.sh is deprecated; use \`make install\`."
+
+# prerequisite checks
+doctor:
+	@echo "🩺 Checking local toolchain"
+	@command -v make >/dev/null 2>&1 || (echo "❌ make not found in PATH" && exit 1)
+	@command -v python3 >/dev/null 2>&1 || (echo "❌ python3 not found in PATH" && exit 1)
+	@if ! command -v brew >/dev/null 2>&1; then \
+		echo "⚠️ brew not found in PATH (brew target may fail)"; \
+	else \
+		echo "✅ brew found"; \
+	fi
+	@echo "✅ Toolchain looks good"
 
 # default target
-install: symlink brew iterm2 sublime
+install: doctor symlink brew iterm2 sublime
 	@echo "🎉 Dotfiles setup complete!"
 
 # Create symlinks for all dotfiles
