@@ -6,18 +6,21 @@ ITERM_PLIST   := $(DOTFILES_DIR)/iterm2/com.googlecode.iterm2.plist
 SYNC_DIR      := $(DOTFILES_DIR)/dots
 
 # ─── Phony targets ────────────────────────────────────────────────────────────
+.DEFAULT_GOAL := install
 .PHONY: help install symlink brew iterm2 sublime clean
 
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  install   Run all steps (default)"
+	@echo "  install   Run all setup steps (default)"
 	@echo "  symlink   Create symlinks for files in dots/"
 	@echo "  brew      Run Homebrew bundle script"
 	@echo "  iterm2    Configure iTerm2 preferences"
 	@echo "  sublime   Configure Sublime Text"
 	@echo "  clean     Remove symlinks created in home directory"
+	@echo ""
+	@echo "Note: install.sh is deprecated; use \`make install\`."
 
 # default target
 install: symlink brew iterm2 sublime

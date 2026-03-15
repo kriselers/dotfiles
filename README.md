@@ -43,13 +43,16 @@ risk!**
    git clone https://github.com/kriselers/dotfiles.git ~/Projects/dotfiles
    ```
 
-5. `cd` to the `dotfiles` directory and run `install.sh` supplying your home
-   directory:
+5. `cd` to the `dotfiles` directory and run the Make entrypoint: directory:
 
    ```bash
    cd ~/Projects/dotfiles
-   ./install.sh <home_directory>
+   make install
    ```
+
+   > `install.sh` is now a deprecated compatibility wrapper around
+   > `make install`. If needed, it still accepts an optional home directory
+   > argument.
 
 [Homebrew]: https://brew.sh/
 
