@@ -1,9 +1,11 @@
 # ─── Variables ───────────────────────────────────────────────────────────────
-DOTFILES_DIR := $(CURDIR)
+DOTFILES_DIR  := $(CURDIR)
 BREW_SCRIPT   := $(DOTFILES_DIR)/homebrew/brew.sh
 SUBLIME_DIR   := $(DOTFILES_DIR)/sublime
 ITERM_PLIST   := $(DOTFILES_DIR)/iterm2/com.googlecode.iterm2.plist
 SYNC_DIR      := $(DOTFILES_DIR)/dots
+SYNC_SCRIPT   := $(DOTFILES_DIR)/sync.py
+DRY_RUN       ?= 0
 
 # ─── Phony targets ────────────────────────────────────────────────────────────
 .DEFAULT_GOAL := install
@@ -14,7 +16,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  install   Run all setup steps (default)"
-	@echo "  symlink   Create symlinks for files in dots/"
+	@echo "  symlink   Create symlinks for files in dots/ (set DRY_RUN=1 to preview)"
 	@echo "  brew      Run Homebrew bundle script"
 	@echo "  iterm2    Configure iTerm2 preferences"
 	@echo "  sublime   Configure Sublime Text"
@@ -28,14 +30,12 @@ install: symlink brew iterm2 sublime
 
 # Create symlinks for all dotfiles
 symlink:
-	@echo "🔗 Creating symlinks from $(SYNC_DIR) to home directory"
-	@find $(SYNC_DIR) -type f ! -name ".DS_Store" | while read -r file; do \
-		rel=$${file#$(SYNC_DIR)/}; \
-		dest=$(HOME)/$${rel}; \
-		mkdir -p $$(dirname "$$dest"); \
-		ln -sf "$$file" "$$dest"; \
-		echo "Linked $$file -> $$dest"; \
-	done
+	@echo "🔗 Creating symlinks from $(SYNC_DIR) to $(HOME)"
+	@if [ "$(DRY_RUN)" = "1" ]; then \
+		python3 $(SYNC_SCRIPT) --source-dir "$(SYNC_DIR)" --target-dir "$(HOME)" --force --dry-run; \
+	else \
+		python3 $(SYNC_SCRIPT) --source-dir "$(SYNC_DIR)" --target-dir "$(HOME)" --force; \
+	fi
 
 # Run Homebrew bundle
 brew:

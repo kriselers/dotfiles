@@ -18,6 +18,9 @@ IGNORE = [".DS_STORE"]
 class SyncArgs(Namespace):
     force: bool = False
     verbose: bool = False
+    dry_run: bool = False
+    source_dir: Path
+    target_dir: Path
 
 
 def force_remove(path: Path) -> None:
@@ -53,14 +56,17 @@ def is_link_to(link: Path, dest: Path) -> bool:
     return is_link
 
 
-def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> None:
+def synchronize_dotfiles(
+    source_dir: Path, target_dir: Path, force: bool, dry_run: bool
+) -> None:
     """
-    Main function to synchronize dotfiles from `source_dir` to the home directory.
+    Main function to synchronize dotfiles from `source_dir` to `target_dir`.
 
     Parameters:
         source_dir (Path): The source directory containing dotfiles.
         target_dir (Path): The target directory where dotfiles will be synchronized.
         force (bool): If True, forcefully update all files without prompting.
+        dry_run (bool): If True, log planned changes without modifying files.
     """
     for path in source_dir.rglob("*"):
         if path.name in IGNORE or not path.is_file():
@@ -88,18 +94,24 @@ def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> Non
                     "Creating directory '%s' before copying file.",
                     target_path.parent,
                 )
-                target_path.parent.mkdir(parents=True)
+                if not dry_run:
+                    target_path.parent.mkdir(parents=True)
 
             logger.debug(
                 "'%s' doesn't exist! Copying to '%s' before creating symlink.",
                 path.name,
                 target_path.parent,
             )
-            _ = copy2(path, target_path)
+            if not dry_run:
+                _ = copy2(path, target_path)
 
         logger.debug("Creating symlink to '%s' in '%s'", target_path, target_dir)
-        force_remove(target_path)
 
+        if dry_run:
+            logger.info("[dry-run] %s => %s", target_path, path)
+            continue
+
+        force_remove(target_path)
         target_path.symlink_to(path)
         logger.info("%s => %s", target_path, path)
 
@@ -108,7 +120,7 @@ if __name__ == "__main__":
     logging.basicConfig(format="%(message)s", level=logging.INFO)
 
     parser = ArgumentParser(
-        description="Synchronize dotfiles from the ./dots directory to the home directory."
+        description="Synchronize dotfiles from a source directory to a target directory."
     )
     _ = parser.add_argument(
         "-f",
@@ -117,16 +129,33 @@ if __name__ == "__main__":
         help="Forcefully update all files without prompting",
     )
     _ = parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Show what would change without touching files",
+    )
+    _ = parser.add_argument(
         "-v", "--verbose", action="store_true", help="Print more verbose output"
+    )
+    _ = parser.add_argument(
+        "--source-dir",
+        type=Path,
+        default=Path.cwd() / "dots",
+        help="Directory containing the dotfiles to link (default: ./dots)",
+    )
+    _ = parser.add_argument(
+        "--target-dir",
+        type=Path,
+        default=Path.home(),
+        help="Directory where symlinks are created (default: $HOME",
     )
     args = parser.parse_args(namespace=SyncArgs())
 
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
-    SOURCE_DIR = Path.cwd() / "dots"
-    TARGET_DIR = Path.home()
+    source_dir = args.source_dir.expanduser().resolve()
+    target_dir = args.target_dir.expanduser().resolve()
 
-    logger.info("Synchronizing dotfiles from '%s' to '%s'", SOURCE_DIR, TARGET_DIR)
-    synchronize_dotfiles(SOURCE_DIR, TARGET_DIR, args.force)
+    logger.info("Synchronizing dotfiles from '%s' to '%s'", source_dir, target_dir)
+    synchronize_dotfiles(source_dir, target_dir, args.force, args.dry_run)
     logger.info("\nSynchronization complete.")

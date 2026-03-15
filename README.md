@@ -54,6 +54,12 @@ risk!**
    > `make install`. If needed, it still accepts an optional home directory
    > argument.
 
+   To preview symlink changes without touching files:
+
+   ```bash
+   make symlink DRY_RUN=1
+   ```
+
 [Homebrew]: https://brew.sh/
 
 ## Add custom commands without creating a new fork
