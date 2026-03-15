@@ -3,6 +3,8 @@ DOTFILES_DIR  := $(CURDIR)
 ITERM_PLIST   := $(DOTFILES_DIR)/iterm2/com.googlecode.iterm2.plist
 SYNC_DIR      := $(DOTFILES_DIR)/dots
 SYNC_SCRIPT   := $(DOTFILES_DIR)/sync.py
+SUBLIME_USER_DIR := $(HOME)/Library/Application Support/Sublime Text/Packages/User
+SUBLIME_INSTALLED_DIR := $(HOME)/Library/Application Support/Sublime Text/Installed Packages
 DRY_RUN       ?= 0
 
 # ─── Phony targets ────────────────────────────────────────────────────────────
@@ -69,11 +71,21 @@ iterm2:
 # Configure Sublime Text
 sublime:
 	@echo "📝 Configuring Sublime Text"
-	@if [ -d "$(SUBLIME_DIR)" ]; then \
-		cd $(SUBLIME_DIR) && ./sublime.sh; \
-	else \
+	@if [ ! -d "$(SUBLIME_DIR)" ]; then \
 		echo "⚠️ sublime/ directory not found, skipping"; \
+		exit 0; \
 	fi
+	@mkdir -p "$(SUBLIME_INSTALLED_DIR)"
+	@mkdir -p "$(SUBLIME_USER_DIR)"
+	@echo "Installing Package Control..."
+	@curl -fsSL "https://packagecontrol.io/Package%20Control.sublime-package" \
+		-o "$(SUBLIME_INSTALLED_DIR)/Package Control.sublime-package"
+	@cp -f "$(SUBLIME_DIR)/Package Control.sublime-settings" \
+		"$(SUBLIME_DIR)/Package Control.sublime-settings"
+	@cp -f "$(SUBLIME_DIR)/Preferences.sublime-settings" \
+		"$(SUBLIME_DIR)/Preferences.sublime-settings"
+	@cp -f "$(SUBLIME_DIR)/Material-Theme-Darker.sublime-color-scheme" \
+		"$(SUBLIME_DIR)/Material-Theme-Darker.sublime-color-scheme"
 
 # Remove symlinks created by this Makefile
 clean:
