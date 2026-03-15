@@ -1,7 +1,5 @@
 # ─── Variables ───────────────────────────────────────────────────────────────
 DOTFILES_DIR  := $(CURDIR)
-BREW_SCRIPT   := $(DOTFILES_DIR)/homebrew/brew.sh
-SUBLIME_DIR   := $(DOTFILES_DIR)/sublime
 ITERM_PLIST   := $(DOTFILES_DIR)/iterm2/com.googlecode.iterm2.plist
 SYNC_DIR      := $(DOTFILES_DIR)/dots
 SYNC_SCRIPT   := $(DOTFILES_DIR)/sync.py
@@ -51,11 +49,13 @@ symlink:
 # Run Homebrew bundle
 brew:
 	@echo "🍺 Running Homebrew bundle"
-	@if [ -x "$(BREW_SCRIPT)" ]; then \
-		cd $(DOTFILES_DIR)/homebrew && ./brew.sh; \
-	else \
-		echo "⚠️ homebrew/brew.sh not found or not executable, skipping"; \
+	@if ! command -v brew >/dev/null 2>&1; then \
+		echo "⚠️ brew not found in PATH, skipping"; \
+		exit 0; \
 	fi
+	@brew update
+	@brew upgrade
+	@brew bundle --file="$(DOTFILES_DIR)/homebrew/Brewfile"
 
 # Configure iTerm2
 iterm2:

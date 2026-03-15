@@ -1,6 +1,4 @@
 tap "buo/cask-upgrade"
-tap "homebrew/bundle"
-tap "jandedobbeleer/oh-my-posh"
 tap "khanhas/tap"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
@@ -10,30 +8,34 @@ brew "gh"
 brew "git"
 # Handy way to save and run project-specific commands
 brew "just"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Utility for directing compilation
 brew "make"
 # Mac App Store command-line interface
 brew "mas"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
-# Platform built on V8 to build network applications
-brew "node"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
-# Pretty, minimal and fast ZSH prompt
-brew "pure"
 # Library for command-line editing
 brew "readline"
-# Python version management
-brew "pyenv"
-# Pyenv plugin to manage virtualenv
-brew "pyenv-virtualenv"
 # Command-line interface for SQLite
 brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+brew "prettier"
+# Prettier daemon
+brew "prettierd"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
+# Python version management
+brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Tool Command Language
@@ -56,8 +58,6 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Command-line tool to customize Spotify client
-brew "khanhas/tap/spicetify-cli"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -68,6 +68,8 @@ cask "android-file-transfer"
 cask "appcleaner"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Voice and text chat software
 cask "discord"
 # Web browser
@@ -75,7 +77,7 @@ cask "firefox"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-monaspace"
-cask "font-monaspace-nerd-font"
+cask "font-monaspice-nerd-font"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Software for Logitech devices
@@ -92,18 +94,23 @@ cask "raycast"
 cask "sf-symbols"
 # Screenshot measurement and annotation tool
 cask "shottr"
-# Music streaming service
-cask "spotify"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # Open-source code editor
 cask "visual-studio-code"
+# Video communication and virtual meeting platform
+cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "AdBlock", id: 1402042596
 mas "Copilot", id: 1447330651
 mas "Goodnotes", id: 1444383602
-mas "Parcel", id: 639968404
+mas "Keynote", id: 409183694
+mas "NordVPN", id: 905953485
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Parcel", id: 375589283
 mas "Playlisty for Apple Music", id: 1459275972
+mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
 vscode "charliermarsh.ruff"
