@@ -2,9 +2,6 @@
 # EG: the ls command is aliased, but to use the normal ls command you would type
 # \ls
 
-# Edit the .zshrc file
-alias ezrc='nvim $HOME/Projects/dotfiles/dots/.zshrc'
-
 # Clear the .zsh_history file
 alias zshclear='echo "" > $HOME/.zsh_history'
 
@@ -27,7 +24,8 @@ alias mkdir='mkdir -p'
 alias ps='ps au'
 alias less='less -R'
 alias cls='clear'
-alias vim='nvim'
+alias vim='nvimvenv'
+alias nvim='nvimvenv'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'

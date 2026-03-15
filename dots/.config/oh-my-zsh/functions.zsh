@@ -201,3 +201,13 @@ mkvenv() {
 
   echo "✅ Virtualenv '$ENV_NAME' is ready to go!"
 }
+
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim "$@"
+    deactivate
+  else
+    command nvim "$@"
+  fi
+}

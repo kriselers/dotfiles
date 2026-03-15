@@ -1,27 +1,5 @@
 --[[
 ───────────────────────────────────────────────────
-           Table of Contents
-───────────────────────────────────────────────────
-  1.  Settings
-  2.  Keymaps
-    2.1 Visual Mode
-    2.2 Operator-pending & Text-obj mappings
-  3.  Autocommands
-  4.  Plugin Manager (lazy.nvim)
-  5.  Plugins
-    5.1 guess-indent.nvim
-    5.2 gitsigns.nvim
-    5.3 Telescope
-    5.4 nvim-treesitter
-    5.5 which-key.nvim
-    5.6 LSP & Completion
-  6.  Colorscheme & UI Tweaks
-───────────────────────────────────────────────────
-]]
---
-
---[[
-───────────────────────────────────────────────────
 => 1. Settings
 ───────────────────────────────────────────────────
 --]]
@@ -76,6 +54,9 @@ o.scrolloff = 10 -- keep 10 lines visible above/below cursor
 o.list = true
 o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+-- Use Neovim specific virtual environment
+g.python3_host_prog = vim.fn.expand '~/.pyenv/versions/nvim-venv/bin/python'
+
 --[[
 ───────────────────────────────────────────────────
 => 2. Keymaps
@@ -85,7 +66,7 @@ local km = vim.keymap.set
 
 -- General
 km('n', '0', '^', { desc = 'Jump to first non-blank character', silent = true })
-km('n', '<leader>w', ':w<CR>', { desc = '[W]rite file', silent = true })
+km('n', '<leader>w', ':update<CR>', { desc = '[W]rite file', silent = true })
 km('n', '<leader><CR>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight', silent = true })
 
 -- Diagnostics
@@ -236,6 +217,7 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require('lazy').setup({
+
   -- auto-detect indent settings
   'NMAC427/guess-indent.nvim',
 
@@ -477,7 +459,9 @@ require('lazy').setup({
                 autoImportCompletions = true,
                 diagnosticMode = 'OpenFilesOnly',
                 excludes = { '*' },
+                ignore = { '*' },
                 inlayHints = { callArgumentNames = true },
+                typeCheckingMode = 'standard',
               },
               disableOrganizeImports = true,
             },
@@ -524,6 +508,19 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
+      formatters = {
+        prettierd = function()
+          local util = require 'conform.util'
+          return {
+            cwd = util.root_file {
+              '.prettierrc',
+              'prettier.config.js',
+              'package.json',
+            },
+            require_cwd = true,
+          }
+        end,
+      },
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -539,8 +536,12 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
+        json = { 'prettierd', 'prettier', stop_after_first = true },
         lua = { 'stylua' },
+        markdown = { 'prettierd', 'prettier', stop_after_first = true },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+        toml = { 'taplo' },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -555,12 +556,6 @@ require('lazy').setup({
         'L3MON4D3/LuaSnip',
         version = '2.*',
         build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
           return 'make install_jsregexp'
         end)(),
         dependencies = {},
@@ -686,6 +681,7 @@ require('lazy').setup({
   --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
   --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 }, {
+  lockfile = vim.fn.expand '~/Projects/dotfiles/dots/.config/nvim/lazy-lock.json',
   ui = { icons = {} },
 })
 

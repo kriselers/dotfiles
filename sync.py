@@ -12,6 +12,8 @@ from shutil import copy2, rmtree
 
 logger = logging.getLogger(__name__)
 
+IGNORE = [".DS_STORE"]
+
 
 class SyncArgs(Namespace):
     force: bool = False
@@ -53,7 +55,7 @@ def is_link_to(link: Path, dest: Path) -> bool:
 
 def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> None:
     """
-    Main function to synchronize dotfiles from SOURCE_DIR to the home directory.
+    Main function to synchronize dotfiles from `source_dir` to the home directory.
 
     Parameters:
         source_dir (Path): The source directory containing dotfiles.
@@ -61,7 +63,7 @@ def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> Non
         force (bool): If True, forcefully update all files without prompting.
     """
     for path in source_dir.rglob("*"):
-        if path.name == ".DS_Store" or not path.is_file():
+        if path.name in IGNORE or not path.is_file():
             continue
 
         target_path = target_dir / path.relative_to(source_dir)
@@ -81,7 +83,6 @@ def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> Non
                 if not response.lower().startswith("y"):
                     continue
         else:
-            # Check if target directory exists
             if not target_path.parent.exists():
                 logger.debug(
                     "Creating directory '%s' before copying file.",
@@ -89,7 +90,6 @@ def synchronize_dotfiles(source_dir: Path, target_dir: Path, force: bool) -> Non
                 )
                 target_path.parent.mkdir(parents=True)
 
-            # Copy file to target path if it doesn't exist
             logger.debug(
                 "'%s' doesn't exist! Copying to '%s' before creating symlink.",
                 path.name,

@@ -1,13 +1,13 @@
-# .dotfiles
-
-These are my dotfiles. This repository contains a random collection of things to
-help me feel comfortable working in the terminal. Take anything you want but at
-your own risk. This mainly targets macOS systems, but there is a branch for
-Linux systems.
+These are my dotfiles. This repository contains a collection of things to help
+me feel comfortable working in the terminal. Take anything you want but at your
+own risk. This mainly targets macOS systems, but there is a branch for Linux
+systems[^1].
 
 I'll be the first to admit that this wasn't created by me from scratch. Most of
 it is "leveraged" from the Internet, and I've customized it to fit my
 development workflow.
+
+[^1]: This branch is a work in progress. I haven't started working on it fully.
 
 ## Installation
 
@@ -30,7 +30,7 @@ risk!**
 
 2. Sign-in to the Mac AppStore and iCloud (and wait until synced)
 
-3. Install [Homebrew](https://brew.sh/). Generally:
+3. Install [Homebrew]. Generally:
 
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -50,6 +50,8 @@ risk!**
    cd ~/Projects/dotfiles
    ./install.sh <home_directory>
    ```
+
+[Homebrew]: https://brew.sh/
 
 ## Add custom commands without creating a new fork
 
