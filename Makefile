@@ -8,7 +8,7 @@ SUBLIME_INSTALLED_DIR := $(HOME)/Library/Application Support/Sublime Text/Instal
 DRY_RUN       ?= 0
 
 # ─── Phony targets ────────────────────────────────────────────────────────────
-.DEFAULT_GOAL := install
+.DEFAULT_GOAL := help
 .PHONY: help doctor install symlink brew iterm2 sublime clean
 
 help:
@@ -16,7 +16,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  doctor    Validate required local tooling (make, python3, brew)"
-	@echo "  install   Run all setup steps (default)"
+	@echo "  install   Run all setup steps"
 	@echo "  symlink   Create symlinks for files in dots/ (set DRY_RUN=1 to preview)"
 	@echo "  brew      Run Homebrew bundle script"
 	@echo "  iterm2    Configure iTerm2 preferences"
